@@ -1,0 +1,249 @@
+
+body{
+    background: url("../img/o2figw-1eqb.jpg");
+    /*background: url("../img/002.jpg");*/
+    background-position: 0 705px;
+    background-size:100%;
+}
+canvas{
+    background: url("../img/33.jpg");
+    border: 1px solid #000;
+}
+.container{
+    width: 600px;
+    height: 600px;
+    position:absolute;
+    left: 0;
+    top:0;
+    right: 0;
+    bottom: 0;
+    margin:auto;
+    display: none;
+}
+@keyframes anima {
+    0%{
+        transform:scale(0.1,0.1);
+    }
+    100%{
+        transform: scale(1,1);
+    }
+}
+.anima{
+    display: block;
+    animation: anima 1.5s cubic-bezier(.49,.46,0,1.88);
+}
+
+#star,#chong,#output{
+    display: block;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 30px;
+    margin-top: 20px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 0 auto;
+    /*background: red;*/
+    background: url("../img/anniu2.jpg");
+}
+#output{
+    margin-top: 20px;
+
+}
+
+#chong{
+    background: green;
+    display: block;
+    /*display: none;*/
+}
+#mode1{
+    display: block;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 30px;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 30px auto 0;
+    font-weight: bold;
+
+}
+.cheer{
+    width: 300px;
+    height: 50px;
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0px auto;
+}
+.cheer-l,.cheer-r{
+    width: 140px;
+    height: 30px;
+    display: block;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    background: url("../img/anniu1.jpg");
+    background-position: -26px 0;
+    border-radius: 20%;
+    font-family:monospace ;
+}
+.cheer-r{
+    float: right;
+}
+.cheers{
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    margin-top:6px;
+    float:right;
+
+}
+.shadow{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    display:none;
+}
+h1{
+    left:535px;
+    color: rgba(255,0,0,1);
+    text-shadow: 5px 5px 5px rgba(255,0,0,.5);
+    text-align: center;
+    font-size: 50px;
+}
+.imgbox{
+    width: 600px;
+    height: 600px;
+    background: url("../img/22.jpg");
+    background-size: 600px 600px;
+    background-position: 0 0;
+    position: absolute;
+    left:384px;
+    top:20px;
+    display: none;
+}
+#download{
+    display: block;
+    position: absolute;
+    width: 87px;
+    text-decoration: none;
+    height: 20px;
+    line-height: 30px;
+    font-size: 20px;
+    color: #ff1512;
+    bottom: 40px;
+    right: 244px;
+    display: none;
+}
+@font-face {
+    font-family: 'iconfont';  /* project id 456434 */
+    src: url('//at.alicdn.com/t/font_456434_3yeexwiajumfs9k9.eot');
+    src: url('//at.alicdn.com/t/font_456434_3yeexwiajumfs9k9.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_456434_3yeexwiajumfs9k9.woff') format('woff'),
+    url('//at.alicdn.com/t/font_456434_3yeexwiajumfs9k9.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_456434_3yeexwiajumfs9k9.svg#iconfont') format('svg');
+}
+.music{
+    border: 1px solid red;
+    font-family: "iconfont";
+    font-size: 36px;
+    position: absolute;
+    top: 40px;
+    right: 50px;
+    color: red;
+    animation: music 1.5s linear infinite;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+@keyframes music {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.games{
+    width: 600px;
+    height: auto;
+    background:url("../img/22.jpg");
+    background-position: -32px -40px;
+    margin: 100px auto 0;
+}
+.games1{
+    background:none;
+    float: left;
+}
+.games h2{
+    font-family: monospace;
+    font-size: 60px;
+    width: 600px;
+    background:url("../img/22.jpg");
+    background-position: 366px 0;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    animation: font 2s linear infinite;
+}
+@keyframes font {
+    0%{
+        color: rgba(255,255,255,.7);
+        text-shadow: 5px  5px 5px rgba(255,255,255,.5);
+    }
+    10%{
+        color: rgba(255,0,0,.7);
+        text-shadow: 5px  5px 5px rgba(255,0,0,.5);
+    }
+    20%{
+        color: rgba(255,255,0,.7);
+        text-shadow: 5px  5px 5px rgba(255,255,0,.5);
+    }
+    30% {
+        color: rgba(255,0,255,.7);
+        text-shadow: 5px  5px 5px rgba(255,0,255,.5);
+    }
+    40%{
+        color: rgba(4,98,255,.7);
+        text-shadow: 5px  5px 5px rgba(4,98,255,.5);
+    }
+    50%{
+        color: rgba(255,98,25,.7);
+        text-shadow: 5px  5px 5px rgba(255,98,25,.5);
+    }
+    60%{
+        color: rgba(25,255,255,.7);
+        text-shadow: 5px  5px 5px rgba(25,255,255,.5);
+    }
+    70%{
+        color: rgba(25,25,255,.7);
+        text-shadow: 5px  5px 5px rgba(25,25,255,.5);
+    }
+    80%{
+        color: rgba(98,98,98,.7);
+        text-shadow: 5px  5px 5px rgba(98,98,98,.5);
+    }
+    90%{
+        color: rgba(0,255,0,.7);
+        text-shadow: 5px  5px 5px rgba(0,255,0,.5);
+    }
+    100%{
+        color: rgba(0,0,0,.7);
+        text-shadow: 5px  5px 5px rgba(0,0,0,.5);
+    }
+}

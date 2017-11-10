@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>五子棋</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="music">&#xe7f8;</div>
+    <audio src="img/music.mp3" autoplay></audio>
+    <div class="games">
+        <h2 class="title">五子棋大作战</h2>
+        <input type="button" value="开始游戏" id="star">
+        <span id="mode1">游戏模式</span><br>
+        <div class="cheer">
+            <label class="cheer-l">玩家对战<input type="radio" name="mod" checked class="cheers"></label>
+            <label class="cheer-r">人机对战<input type="radio"  name="mod" id="mode" class="cheers"></label>
+        </div>
+    </div>
+
+    <div class="container">
+        <canvas width="600px" height="600px"></canvas>
+    </div>
+    <div class="shadow">
+        <div class="games games1">
+            <h1></h1>
+            <input type="button" value="重新开始" id="chong">
+            <input type="button" value="绘制棋谱" id="output">
+        </div>
+        <div class="imgbox"></div>
+        <a href="#" id="download">下载</a>
+     </div>
+</body>
+<script src="js/index.js"></script>
+<!--<script src="js/js.js"></script>-->
+</html>
