@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'iconfont';  /* project id 471968 */
+            src: url('https://at.alicdn.com/t/font_471968_irk11jzcfhjpds4i.eot');
+            src: url('https://at.alicdn.com/t/font_471968_irk11jzcfhjpds4i.eot?#iefix') format('embedded-opentype'),
+            url('https://at.alicdn.com/t/font_471968_irk11jzcfhjpds4i.woff') format('woff'),
+            url('https://at.alicdn.com/t/font_471968_irk11jzcfhjpds4i.ttf') format('truetype'),
+            url('https://at.alicdn.com/t/font_471968_irk11jzcfhjpds4i.svg#iconfont') format('svg');
+        }
+        .iconfont{
+
+            font-family:"iconfont" !important;
+            font-size:16px;
+            font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            outline: none;
+        }
+        html{
+            font-size: 100px;
+            width: 100%;
+            height: 100%;
+        }
+        @media screen and (min-width: 375px){
+            html{
+                font-size: 50px;
+            }
+        }
+        table{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            background: url("weathercn/t5.gif");
+            background-repeat: no-repeat;
+            font-weight: bold;
+            border-collapse: collapse;
+            table-layout:fixed;
+            font-size: .28rem;
+            text-align: center;
+
+        }
+
+        td{
+            width:auto;
+            height: 1rem;
+        }
+        .dushu{
+            width: 210px;
+            height: 60px;
+            font-family: monospace;
+            font-size: 70px;
+            color: rgba(255, 208, 15, 0.58);
+        }
+        .img img{
+            width: 30px;
+            height: 30px;
+        }
+        .weather-img img{
+            display: block;
+            width: 60px;
+            height: 60px;
+        }
+        .weather-tianqi{
+            font-size: 32px;
+            font-family: cursive;
+        }
+        .fengli{
+            font-size: 20px;
+            font-family: cursive;
+        }
+        .riqi, .city{
+            font-size: 22px;
+            font-family: monospace;
+        }
+        .add{
+            font-size: 36px;
+        }
+        .city i{
+            color: #000;
+            font-size: 28px;
+        }
+        .mask{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:url("weathercn/001.jpeg");
+            background-size: contain;
+            display: none;
+        }
+        .ico{
+            font-family: iconfont;
+            font-size: 28px;
+            position: absolute;
+            top:.2rem;
+            left:.2rem;
+        }
+        .font{
+            position: absolute;
+            left:148px;
+            top: .2rem;
+            margin: auto;
+            font-size: 22px;
+        }
+        .address{
+            position: absolute;
+            top:50px;
+            left: .2rem;
+        }
+        .address select{
+            font-size: 14px;
+            width: 110px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            border-radius: 20px;
+        }
+        button{
+            width: 60px;
+            height: 30px;
+            font-size: 18px;
+            position: absolute;
+            right: 150px;
+            bottom: 130px;
+        }
+        .tbody{
+            background: rgba(0, 0, 0, 0.22);
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td class="riqi" colspan="6"></td>
+            <td class="add">
+                +
+            </td>
+        </tr>
+        <tr class="temp">
+            <td class="dushu" rowspan="3" colspan="2"></td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr class="weather"></tr>
+        <tr class="fengli"></tr>
+        <!--<tbody class="tbody">-->
+            <tr class="adds">
+                <td class="city" colspan="3">
+                    <i class="iconfont">&#xe60c;</i>
+                    <span class="citys"></span>
+                </td>
+            </tr>
+            <tr class="day"></tr>
+            <tr class="date"></tr>
+            <tr class="img"></tr>
+            <tr class="temphigh"></tr>
+            <tr class="windpower"></tr>
+
+        <!--</tbody>-->
+
+
+    </table>
+
+<div class="mask">
+    <div class="ico">&#xe619;</div>
+    <div class="font">城市管理</div>
+    <div class="address">
+        <select name="" id="province">
+            <option value="0">--请选择省份--</option>
+        </select>
+        <select name="" id="city">
+            <option value="0">--请选择城市--</option>
+        </select>
+        <select name="" id="town">
+            <option value="0">--请选择区县--</option>
+        </select>
+    </div>
+    <button>确认</button>
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+
+       var ct="";
+        $.getScript("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js",function () {
+            ct=remote_ip_info.city;
+            $(".citys").html(ct);
+            getweather(ct)
+        });
+        function getweather(ct) {
+            $.ajax({
+                url:"http://api.jisuapi.com/weather/query?appkey=7bd1c82d3c3e9ecd&city="+ct,
+                dataType:"jsonp",
+                success:function (r) {
+                    var data=r.result.daily;
+                    var city = r.result.city;
+                    var temphight="";
+                    var str="";
+                    var week="";
+                    var date="";
+                    var img="";
+                    var temp="";
+                    var windpower="";
+                    var fengxiang="";
+                    $.each(data,function (index,val) {
+                        temphight=val.day.temphigh+"℃";
+                        str=`<td class="weather-img"><img src="weathercn/${val.day.img}.png" alt=""></td><td colspan="2" class="weather-tianqi">${val.day.weather}</td>`;
+                        week+=`<td>${val.week}</td>`;
+                        date+=`<td>${val.sunset}</td>`;
+                        img+=`<td><img src="weathercn02/${val.day.img}.png" alt=""></td>`;
+                        temp+=`<td>${val.night.templow}/${val.day.temphigh}℃</td>`;
+                        windpower+=`<td>${val.day.windpower}</td>`;
+                        fengxiang=`<td colspan="2"></td>`;
+
+                    });
+                    $(".dushu").html(temphight);
+                    $(".weather").html(str);
+                    $(".day").html(week);
+                    $(".date").html(date);
+                    $(".img").html(img);
+                    $(".temphigh").html(temp);
+                    $(".windpower").html(windpower);
+                    $(".citys").html(city);
+
+                }
+            });
+
+        }
+
+    var dates=new Date();
+    var t=dates.toLocaleDateString();
+   $(".riqi").html(t);
+
+//   城市管理
+    $(".add").click(function () {
+        $(".mask").show(500);
+        $("#province").one("focus",function () {
+            $.ajax({
+                url:"http://api.jisuapi.com/weather/city?appkey=7bd1c82d3c3e9ecd",
+                dataType:"jsonp",
+                success:function (r) {
+                    var data=r.result;
+                    var provincedata=$.grep(data,function (val,index) {
+                        return val.parentid=="0"
+                    });
+                    console.log(provincedata);
+                    var str="<option value=0>--请选择省份--</option>";
+                    $.each(provincedata,function (index,val) {
+                        str+=`<option value="${val.cityid}">${val.city}</option>`
+                    });
+                    $("#province").html(str);
+                }
+            })
+        });
+        $("#province").change(function () {
+            var value=$(this).val();
+            if(value==0)return;
+            $.ajax({
+                url:"http://api.jisuapi.com/weather/city?appkey=7bd1c82d3c3e9ecd",
+                dataType:"jsonp",
+                success:function (r) {
+                    var data=r.result;
+                    var citydata=$.grep(data,function(val,index) {
+                        return val.parentid==value;
+                    });
+                    var str="<option value=0>--请选择城市--</option>"
+                    $.each(citydata,function (index,val) {
+                        str+=`<option value="${val.cityid}">${val.city}</option>`;
+                    });
+                    $("#city").html(str);
+                }
+            })
+        });
+        $("#city").change(function () {
+            var value=$(this).val();
+            if(value===0)return;
+            $.ajax({
+                url:"http://api.jisuapi.com/weather/city?appkey=7bd1c82d3c3e9ecd",
+                dataType:"jsonp",
+                success:function (r) {
+                    var data=r.result;
+                    var towndata=$.grep(data,function (val,index) {
+                        return val.parentid==value;
+                    });
+                    var str="<option value=0>--请选择区县--</option>";
+                    $.each(towndata,function (index,val) {
+                        str+=`<option>${val.city}</option>`;
+                    })
+                    $("#town").html(str);
+                }
+            })
+        })
+    });
+    $(".ico").click(function () {
+        $(".mask").hide(500);
+    });
+
+//    确定事件
+    $("button").click(function () {
+        $(".mask").hide();
+        var ct=$("#town").val();
+        getweather(ct);
+    })
+</script>
+</html>
