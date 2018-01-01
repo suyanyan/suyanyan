@@ -22,8 +22,10 @@ $(".container").fullpage({
             $(".about").addClass("abouts")
         }else if(index===3){
             circle(canvas1,90,"red");
-            circle(canva2,80,"blue");
-            circle(canva3,65,"purple");
+            circle(canvas2,80,"blue");
+            circle(canvas3,80,"purple");
+            circle(canvas4,75,"blue");
+            circle(canvas5,75,"purple");
         }else if(index===4) {
             $(".section4-inner-l").addClass("left1");
             $(".section4-inner-center").addClass("center");
